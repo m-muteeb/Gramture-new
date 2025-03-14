@@ -1,8 +1,120 @@
+// import React from "react";
+// import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+// import PrivacyPolicy from "./pages/PrivacyPolicy";
+// import Footer from "./components/Footer";
+// import Sidebar from "./components/Sidebar";
+// import "./assets/css/homepage.css";
+// import HomePage from "./pages/Frontend/HomePage";
+// import Index from "./components/Header";
+// import Construction from "../src/pages/Frontend/Construction";
+// // Libraries
+// import "@fortawesome/fontawesome-free/css/all.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+
+// import ManageProducts from "./pages/AdminDashboard/ManageContent";
+// import DashboardHome from "./pages/AdminDashboard/DashboardHome";
+// import ClassCategory from "./components/ClassCategory";
+// import Description from "./components/description";
+// import Login from "./components/Auth/Login";
+// import  About from "./components/AboutSection";
+// import PrivateRoute from "./Routes/PrivateRoute";
+// import { AuthProvider } from "../src/contexts/AuthContext";
+// import DiscusionFourm from "../src/components/DiscussionFourm";
+// import Results  from "../src/components/Results";
+
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import Disclaimer from "./components/Disclaimer";
+// import "./"
+
+// const App = () => {
+//   const location = useLocation(); // Get the current location
+//   const isDescriptionPage = location.pathname.startsWith("/description/");
+
+//   // Define the routes where the Index (header) and Sidebar should not be shown
+//   // const excludedRoutes = ["/Add Grammar", "/ManageProducts"];
+//   // const shouldShowHeaderAndSidebar = !excludedRoutes.includes(location.pathname);
+
+//   return (
+//     <div className="app-layout">
+//       <Index />
+//       <div className="main-content-wrapper">
+//         {/* Conditionally render Sidebar */}
+//         {/* {shouldShowHeaderAndSidebar && <Sidebar />} */}
+//         {isDescriptionPage && <Sidebar />}
+//         <div className="main-content">
+//           <Routes>
+//             {/* Public Routes */}
+//             <Route
+//               path="/*"
+//               element={
+//                 <>
+//                   <HomePage />
+//                   <ClassCategory />
+
+//                 </>
+//               }
+//             />
+//             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+//             <Route path="/construction" element={<Construction />} />
+//             <Route path="/description/:subCategory/:topicId" element={<Description />} />
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/about" element={<About />} />
+//             <Route path="/discussion_forum" element={<DiscusionFourm />} />
+//             <Route path="/results" element={<Results />} />
+//             <Route path ="/disclaimer" element={<Disclaimer />} />
+           
+            
+//             {/* <Route path="/register" element={<Register />} /> */}
+
+//             {/* Private Routes */}
+//             <Route
+//               path="/Add Grammar"
+//               element={
+//                 <PrivateRoute>
+//                   <DashboardHome />
+//                 </PrivateRoute>
+//               }
+//             />
+//             <Route
+//               path="/ManageProducts"
+//               element={
+//                 <PrivateRoute>
+//                   <ManageProducts />
+//                 </PrivateRoute>
+//               }
+//             />
+//           </Routes>
+//         </div>
+//       </div>
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// // Wrap App with Router and AuthProvider to access useLocation and provide authentication context
+// const AppWithRouter = () => (
+//   <Router>
+//     <AuthProvider>
+//       <App />
+//     </AuthProvider>
+//   </Router>
+// );
+
+// export default AppWithRouter;
+
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Footer from "./components/Footer";
-// import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar";
 import "./assets/css/homepage.css";
 import HomePage from "./pages/Frontend/HomePage";
 import Index from "./components/Header";
@@ -10,43 +122,33 @@ import Construction from "../src/pages/Frontend/Construction";
 // Libraries
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 import ManageProducts from "./pages/AdminDashboard/ManageContent";
 import DashboardHome from "./pages/AdminDashboard/DashboardHome";
 import ClassCategory from "./components/ClassCategory";
 import Description from "./components/description";
 import Login from "./components/Auth/Login";
-import  About from "./components/AboutSection";
+import About from "./components/AboutSection";
 import PrivateRoute from "./Routes/PrivateRoute";
 import { AuthProvider } from "../src/contexts/AuthContext";
 import DiscusionFourm from "../src/components/DiscussionFourm";
-import Results  from "../src/components/Results";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Results from "../src/components/Results";
 import Disclaimer from "./components/Disclaimer";
-import "./"
 
 const App = () => {
-  const location = useLocation(); // Get the current location
-
-  // Define the routes where the Index (header) and Sidebar should not be shown
-  const excludedRoutes = ["/Add Grammar", "/ManageProducts"];
-  const shouldShowHeaderAndSidebar = !excludedRoutes.includes(location.pathname);
+  const location = useLocation();
+  const isDescriptionPage = location.pathname.startsWith("/description/");
 
   return (
     <div className="app-layout">
       <Index />
       <div className="main-content-wrapper">
-        {/* Conditionally render Sidebar */}
-        {/* {shouldShowHeaderAndSidebar && <Sidebar />} */}
-        <div className="main-content">
+        {/* Show Sidebar only on Description Page */}
+        {isDescriptionPage && <Sidebar />}
+        <div className={`main-content ${isDescriptionPage ? "description-page" : ""}`}>
           <Routes>
             {/* Public Routes */}
             <Route
@@ -55,7 +157,6 @@ const App = () => {
                 <>
                   <HomePage />
                   <ClassCategory />
-
                 </>
               }
             />
@@ -66,10 +167,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/discussion_forum" element={<DiscusionFourm />} />
             <Route path="/results" element={<Results />} />
-            <Route path ="/disclaimer" element={<Disclaimer />} />
-           
-            
-            {/* <Route path="/register" element={<Register />} /> */}
+            <Route path="/disclaimer" element={<Disclaimer />} />
 
             {/* Private Routes */}
             <Route
@@ -96,7 +194,7 @@ const App = () => {
   );
 };
 
-// Wrap App with Router and AuthProvider to access useLocation and provide authentication context
+// Wrap App with Router and AuthProvider
 const AppWithRouter = () => (
   <Router>
     <AuthProvider>

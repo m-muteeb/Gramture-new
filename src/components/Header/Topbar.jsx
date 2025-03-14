@@ -3,7 +3,7 @@ import '../../assets/css/topbar.css';
 import { Modal, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 
-import img from '../../assets/images/navbarlogo.webp'; // Your logo image
+import img from '../../assets/images/new-logo.webp'; // Your logo image
 import { FaHome, FaInfoCircle, FaComments } from 'react-icons/fa'; // Import FontAwesome icons
 
 const Topbar = () => {

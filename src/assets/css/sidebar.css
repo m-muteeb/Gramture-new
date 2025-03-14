@@ -2,7 +2,7 @@
 .app-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: #ffffff;
 }
 
@@ -24,17 +24,28 @@
   width: 250px;
   padding: 20px;
   background-color: #fcf9f9;
- 
-  position: fixed; /* Fix the sidebar to the top of the page */
-  top: 0;
+  position: fixed; /* Keeps it fixed to the left */
+  top: 115px; /* Adjust this based on your navbar's total height */
   left: 0;
-  height: 100vh;
-  overflow: hidden;
+  height: calc(100vh - 110px); /* Ensures it doesn't overlap the footer */
+  overflow-y: auto; /* Enables scrolling */
   box-sizing: border-box;
   animation: fadeInLeft 1.5s ease-in-out;
- 
-  cursor: pointer; /* Change cursor to hand on hover */
-  margin-top: 50px;
+  z-index: 1000; /* Keeps it below navbar but above main content */
+  cursor: pointer;
+}
+
+/* Ensuring main content is properly aligned */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  /* margin-left: 270px; Space for fixed sidebar */
+  display: flex;
+  flex-direction: column;
+  animation: fadeInRight 1.5s ease-in-out;
+}
+.description-page {
+  margin-left: 270px;
 }
 
 /* Search bar styling */
@@ -92,14 +103,14 @@
 }
 
 /* Main content area */
-.main-content {
+/* .main-content {
   flex: 1;
   padding: 20px;
-  margin-left: 270px; /* Space for fixed sidebar */
+  margin-left: 270px; 
   display: flex;
   flex-direction: column;
   animation: fadeInRight 1.5s ease-in-out;
-}
+} */
 
 
 
